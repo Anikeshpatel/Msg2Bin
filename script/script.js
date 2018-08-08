@@ -11,6 +11,7 @@ var rawInput = document.querySelector("#raw_input");
 var binInput = document.querySelector("#bin_input");
 var switchBtn = document.querySelector("#switch_btn");
 var copyBtn = document.querySelector(".copy-btn");
+var footerWrapper = document.querySelector(".footer_wrapper");
 
 // Define Mode
 var mode = 'msg2bin';
@@ -54,10 +55,12 @@ binInput.addEventListener('input', function (event) {
 switchBtn.addEventListener('click', function (event) {
     if (mode === 'msg2bin') {
         container.style.flexDirection = 'row-reverse';
+        footerWrapper.style.flexDirection = 'row-reverse';
         mode = "bin2msg";
     }
     else {
         container.style.flexDirection = 'row';
+        footerWrapper.style.flexDirection = 'row';
         mode = "msg2bin";
     }
 });
@@ -99,7 +102,7 @@ function showStringOutPut() {
         for (var j=0;j<binChars.length;j++){
             string += getChar(parseInt(binChars[j],2))
         }
-        
+
         string += " ";
     }
 
