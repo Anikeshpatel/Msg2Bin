@@ -62,6 +62,15 @@ switchBtn.addEventListener('click', function (event) {
     }
 });
 
+copyBtn.addEventListener('click', function () {
+    if (mode === 'msg2bin') {
+        copyToClipboard(binInput.textContent);
+    }
+    else {
+        copyToClipboard(rawInput.textContent);
+    }
+});
+
 
 // Function for displaying the binary data into second block
 function showBinOutPut() {
@@ -90,12 +99,24 @@ function showStringOutPut() {
         for (var j=0;j<binChars.length;j++){
             string += getChar(parseInt(binChars[j],2))
         }
-
+        
         string += " ";
     }
 
     rawInput.textContent = string;
 }
+
+const copyToClipboard = function (str){
+    var el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
 
 
 function getASCII(char){
